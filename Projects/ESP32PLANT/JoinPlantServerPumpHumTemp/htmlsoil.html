@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <h1>ESP32 Weather Station</h1>
+    <script>
+        function toggleRelay(relayNumber) {
+            // Send an HTTP request to toggle the relay based on the relay number
+            fetch("/toggleRelay?relay=" + relayNumber)
+                .then(response => response.text())
+                .then(data => {
+                    console.log("Relay toggled:", data);
+                })
+                .catch(error => console.error("Error toggling relay:", error));
+            console.log("Toggle Relay " + relayNumber);
+        }
+    </script>
+</head>
+<body>
+    <p>Temperature: %TEMP% &#8451;</p>
+    <p>Humidity: %HUM% %</p>
+    <p>Conductivity: %CON% </p>
+    <button onclick="toggleRelay(1)">Toggle Relay Pump Water 1</button> <br>
+    <p>Soil humidity1 : %SH1%</p>
+    <button onclick="toggleRelay(2)">Toggle Relay Pump Water 2</button> <br>
+    <p>Soil humidity2 : %SH1%</p>
+    <button onclick="toggleRelay(3)">Toggle Relay Pump Water 3</button> <br>
+    <p>Soil humidity3 : %SH2%</p>
+    <button onclick="toggleRelay(4)">Toggle Relay Pump Water 4</button> <br>
+    <p>Soil humidity4 : %SH3%</p>
+    <button>Camera</button> <br>
+</body>
+</html>
